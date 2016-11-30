@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\RecipyRepository;
 
 class RecipyController extends Controller
 {
+    protected $recipyRepositoy;
+
+    public function __construct(RecipyRepository $recipyRepositoy) {
+        $this->recipyRepositoy = $recipyRepositoy;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +40,8 @@ class RecipyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        return $this->recipyRepositoy->store($data);
     }
 
     /**
@@ -45,7 +52,7 @@ class RecipyController extends Controller
      */
     public function show(int $id)
     {
-        //
+        return $this->recipyRepositoy->findBy(['id' => (int) $id]);
     }
 
     /**
@@ -54,9 +61,11 @@ class RecipyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id, Request $request)
     {
-        //
+        $data = $request->all();
+        $recipy = $this->recipyRepositoy->findBy(['id' => $id]);
+        return $this->recipyRepositoy->edit($data, $recipy);
     }
 
     /**

@@ -6,4 +6,4 @@
 Homestead.json
 Homestead.yaml
 .env
-data/database.sqlite
+storage/database.sqlite

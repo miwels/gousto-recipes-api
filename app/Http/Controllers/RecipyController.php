@@ -26,12 +26,14 @@ class RecipyController extends Controller
         return $this->recipyRepositoy->getAll();
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     *
+     * @todo create helper to define the mandatory fields or add some accessors
+     *       in our Eloquent model
      */
     public function store(Request $request)
     {

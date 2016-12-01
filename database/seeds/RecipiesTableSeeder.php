@@ -14,6 +14,8 @@ class RecipiesTableSeeder extends Seeder
      * them in our model.
      *
      * @return void
+     *
+     * @todo refactor this method to use our Repository->store() method instead
      */
     public function run()
     {

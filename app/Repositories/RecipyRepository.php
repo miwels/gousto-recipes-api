@@ -17,6 +17,11 @@ class RecipyRepository implements RecipyRepositoryInterface {
 		$this->recipyFactory = $recipyFactory;
 	}
 
+	/**
+	 * Retrieves all results in the system
+	 *
+	 * @param int $results Number of results per page
+	 */
 	public function getAll(int $results = 5)
 	{
 		return $this->recipy->simplePaginate($results);

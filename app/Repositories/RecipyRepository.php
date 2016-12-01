@@ -76,9 +76,9 @@ class RecipyRepository implements RecipyRepositoryInterface {
 		$values['created_at'] = Carbon::now();
 		$values['updated_at'] = Carbon::now();
 
-		$recipy = Recipy::create($values);
-		if($recipy) {
-			return $recipy;
+		$newRecipy = $recipy->create($values);
+		if($newRecipy) {
+			return $newRecipy;
 		}
 		return false;
 	}

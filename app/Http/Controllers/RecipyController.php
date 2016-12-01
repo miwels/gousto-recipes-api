@@ -36,6 +36,23 @@ class RecipyController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        // here we can define a list of mandatory fiedls. It'd make more sense
+        // to put this function in a  helper i.e. app\Helpers
+        $requestKeys = array_keys($data);
+        $mandatoryFields = [
+            'box_type',
+            'title',
+            'slug',
+            'gousto_reference',
+            'marketing_description'
+        ];
+        $fields = array_intersect($mandatoryFields, $requestKeys);
+
+        if(count($fields) !== count($mandatoryFields)) {
+            return ['error' => 'Missing mandatory fields'];
+        }
+
         return $this->recipyRepositoy->store($data);
     }
 
@@ -87,6 +104,8 @@ class RecipyController extends Controller
 
     // -------------------------------------------------------------------------
     // Unused resources. These can also be filtered in routes/api.php
+    // Do 'php artisan route:list' to take a look at the available routes
+    // (or GET the root folder of the project '/')
     // -------------------------------------------------------------------------
 
     /**

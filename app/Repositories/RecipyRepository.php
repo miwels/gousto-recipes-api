@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\Recipy;
 use App\Factories\RecipyFactory;
 use App\Repositories\Interfaces\RecipyRepositoryInterface;
+use Carbon\Carbon;
 
 class RecipyRepository implements RecipyRepositoryInterface {
 
@@ -65,14 +66,24 @@ class RecipyRepository implements RecipyRepositoryInterface {
 	{
 		$recipy = $this->recipyFactory->make();
 
-		foreach($values as $key => $value) {
-			$recipy->$key = $value;
-		}
+		$nextId = $this->getLastId() + 1;
+		$values['id'] = $nextId;
+		$values['created_at'] = Carbon::now();
+		$values['updated_at'] = Carbon::now();
 
-		if($recipy->save()) {
+		$recipy = Recipy::create($values);
+		if($recipy) {
 			return $recipy;
 		}
-
 		return false;
+	}
+
+	/**
+	 * Due to the fact that we are using an in-memory engine or sqlite we have
+	 * to manually retrieve the last inserted ID
+	 */
+	public function getLastId()
+	{
+		return $this->recipy->select(\DB::raw('max(id) as id'))->first()->id;
 	}
 }

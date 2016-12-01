@@ -9,4 +9,5 @@ interface RecipyRepositoryInterface
 	public function findBy(array $columns, int $results);
 	public function edit(array $values, Recipy $recipy);
 	public function store(array $values);
+    public function getLastId();
 }

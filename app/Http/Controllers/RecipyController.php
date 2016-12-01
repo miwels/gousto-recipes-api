@@ -79,10 +79,10 @@ class RecipyController extends Controller
         ];
 
         if(!in_array($name, $allowedCategories)) {
-            return ['error' => 'Cateogry not found'];
+            return ['error' => 'Category not found'];
         }
 
-        return $this->recipyRepositoy->findBy(['recipe_cuisine' => $value]);
+        return $this->recipyRepositoy->findBy([$name => $value]);
     }
 
     // -------------------------------------------------------------------------

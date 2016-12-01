@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $output = "";
+    \Artisan::call('route:list');
+    return response('Available methods:
+
+' . \Artisan::output(), 200)->header('Content-Type', 'text/plain');
 });

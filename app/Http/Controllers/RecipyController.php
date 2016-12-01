@@ -74,7 +74,9 @@ class RecipyController extends Controller
      */
     public function category($name, $value)
     {
-        static $allowedCategories = ['recipe_cuisine'];
+        static $allowedCategories = [
+            'recipe_cuisine'
+        ];
 
         if(!in_array($name, $allowedCategories)) {
             return ['error' => 'Cateogry not found'];

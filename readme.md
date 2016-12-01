@@ -5,7 +5,10 @@
     mkdir -p data
     touch storage/database.sqlite
     php artisan key:generate
+
+    # run the migrations and populate the data
     php artisan db:seed --class=RecipiesTableSeeder
+
     php artisan serve
 
 # DB definition

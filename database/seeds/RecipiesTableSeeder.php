@@ -17,6 +17,14 @@ class RecipiesTableSeeder extends Seeder
      */
     public function run()
     {
+        // create the sqlite database
+        if(!file_exists('storage/database.sqlite')) {
+            fopen('storage/database.sqlite', 'w');
+        }
+
+        \Artisan::call('migrate');
+
+        // bootstrap the data
         $data = Excel::load(self:: CSV_PATH)->get();
         $output = []; // for debugging purposes
         foreach($data as $element) {

@@ -17,4 +17,13 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::resource('/recipies', 'RecipyController');
+Route::resource('/recipies', 'RecipyController',
+                ['only' => [
+                    'index',
+                    'store',
+                    'show',
+                    'update'
+                ]]);
+
+Route::get('recipies/category/{name}/{value}', ['uses' => 'RecipyController@category',
+                                                'as'   => 'recipies.category']);

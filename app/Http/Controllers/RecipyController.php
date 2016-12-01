@@ -14,23 +14,18 @@ class RecipyController extends Controller
     }
     /**
      * Display a listing of the resource.
+     * This method allows paginating the results, simply add an extra parameter
+     * in your query string:
+     *
+     * i.e /api/recipies?page=2
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return $this->recipyRepositoy->getAll();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -56,12 +51,13 @@ class RecipyController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $id, Request $request)
+    public function update(Request $request, int $id)
     {
         $data = $request->all();
         $recipy = $this->recipyRepositoy->findBy(['id' => $id]);
@@ -69,13 +65,34 @@ class RecipyController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Filters recipies by a certain criteria.
+     * We can restrict the categories we allow filtering
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param string $nane  The category name
+     * @param string $value The category value
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function category($name, $value)
+    {
+        static $allowedCategories = ['recipe_cuisine'];
+
+        if(!in_array($name, $allowedCategories)) {
+            return ['error' => 'Cateogry not found'];
+        }
+
+        return $this->recipyRepositoy->findBy(['recipe_cuisine' => $value]);
+    }
+
+    // -------------------------------------------------------------------------
+    // Unused resources. These can also be filtered in routes/api.php
+    // -------------------------------------------------------------------------
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         //
     }
@@ -89,5 +106,16 @@ class RecipyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request)
+    {
+
     }
 }

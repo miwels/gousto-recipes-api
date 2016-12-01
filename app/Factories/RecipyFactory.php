@@ -6,6 +6,10 @@ use App\Models\Recipy;
 class RecipyFactory
 {
 	public function __construct() {
-		return new Recipy;
+		// inject dependencies here
 	}
+
+    public function make() {
+        return new Recipy;
+    }
 }

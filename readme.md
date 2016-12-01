@@ -1,10 +1,44 @@
-sudo chmod -R 777 storage bootstrap
-composer install
-cp .env.example .env
-mkdir -p data
-touch data/database.sqlite
-php artisan key:generate
-php artisan serve
+    sudo chmod -R 777 storage bootstrap
+    composer install
+    cp .env.example .env
+    change .env to use 'sqlite' -> DB_CONNECTION=sqlite
+    mkdir -p data
+    touch storage/database.sqlite
+    php artisan key:generate
+    php artisan db:seed --class=RecipiesTableSeeder
+    php artisan serve
+
+# DB definition
+    CREATE TABLE "main"."recipies" (
+        "id" INTEGER NOT NULL,
+        "created_at" TEXT NOT NULL,
+        "updated_at" TEXT NOT NULL,
+        "box_type" TEXT NOT NULL,
+        "title" TEXT NOT NULL,
+        "slug" TEXT NOT NULL,
+        "short_title" TEXT NULL,
+        "marketing_description" TEXT NOT NULL DEFAULT (0),
+        "calories_kcal" INTEGER NOT NULL DEFAULT (0),
+        "protein_grams" INTEGER NOT NULL DEFAULT (0),
+        "fat_grams" INTEGER NOT NULL DEFAULT (0),
+        "carbs_grams" INTEGER NOT NULL DEFAULT (0),
+        "bulletpoint1" TEXT,
+        "bulletpoint2" TEXT,
+        "bulletpoint3" TEXT,
+        "recipe_diet_type_id" TEXT,
+        "season" TEXT,
+        "base" TEXT,
+        "protein_source" TEXT,
+        "preparation_time_minutes" INTEGER NOT NULL DEFAULT (0),
+        "shelf_life_days" INTEGER NOT NULL DEFAULT (0),
+        "equipment_needed" TEXT,
+        "origin_country" TEXT,
+        "recipe_cuisine" TEXT,
+        "in_your_box" TEXT,
+        "gousto_reference" INTEGER NOT NULL DEFAULT (0)
+    );
+
+
 
 --------
 <p align="center"><a href="https://laravel.com" target="_blank"><img width="150"src="https://laravel.com/laravel.png"></a></p>

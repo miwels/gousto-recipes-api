@@ -39,6 +39,7 @@ class CreateRecipiesTable extends Migration
             $table->text('recipe_cuisine')->nullable();
             $table->text('in_your_box')->nullable();
             $table->integer('gousto_reference')->default('0');
+            $table->tinyInteger('rating')->default('1');
         });
     }
 
@@ -49,6 +50,6 @@ class CreateRecipiesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('recipies');
     }
 }

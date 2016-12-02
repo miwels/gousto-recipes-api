@@ -35,6 +35,7 @@ class Recipy extends Model
         'recipe_cuisine',
         'in_your_box',
         'gousto_reference',
+        'rating'
     ];
 
     /**

@@ -21,6 +21,7 @@ class RecipyRepository implements RecipyRepositoryInterface {
 	 * Retrieves all results in the system
 	 *
 	 * @param int $results Number of results per page
+	 * @return \Illuminate\Contracts\Pagination\Paginator
 	 */
 	public function getAll(int $results = 5)
 	{
@@ -33,7 +34,7 @@ class RecipyRepository implements RecipyRepositoryInterface {
 	 * @param  array       	$column  	key-value element where the key is the table column and
 	 *                                	value is the column value
 	 * @param  int  		$results 	paginates the output with the number of elements of $results
-	 * @return \Collection            	returns a Collection of results
+	 * @return \Illuminate\Contracts\Pagination\Paginator
 	 */
 	public function findBy(array $column, int $results = 5)
 	{
@@ -46,7 +47,7 @@ class RecipyRepository implements RecipyRepositoryInterface {
 	 *
 	 * @param  array  $values  key-value element where the key is the table column and
 	 *                         value is the column value
-	 * @return [type]         [description]
+	 * @return Recipy|bool
 	 */
 	public function edit(array $values, Recipy $recipy)
 	{
@@ -95,6 +96,8 @@ class RecipyRepository implements RecipyRepositoryInterface {
 	/**
 	 * Due to the fact that we are using an in-memory engine or sqlite we have
 	 * to manually retrieve the last inserted ID
+	 *
+	 * @return int
 	 */
 	public function getLastId()
 	{

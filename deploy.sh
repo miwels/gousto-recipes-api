@@ -14,7 +14,7 @@ echo '********** Generating application key'
 php artisan key:generate
 
 echo '********** Setting up SQLite database'
-php artisan db:seed --class=RecipiesTableSeeder
+php artisan db:seed --class=RecipesTableSeeder
 
 echo '**********  Serving the application'
 php artisan serve

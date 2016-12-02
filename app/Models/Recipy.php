@@ -8,11 +8,6 @@ use Carbon\Carbon;
 class Recipy extends Model
 {
     protected $table = 'recipies';
-    protected $dates = [
-        'created_at',
-        'updated_at'
-    ];
-
     protected $dateFormat = 'd-m-Y H:i:s';
     protected $fillable = [
         'id',

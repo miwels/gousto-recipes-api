@@ -72,6 +72,9 @@ class RecipyController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * NOTE: in order for Laravel to understand PUT|PATCH methods we have to send
+     * the params in x-www-form-urlencoded format
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -79,7 +82,7 @@ class RecipyController extends Controller
     public function update(Request $request, int $id)
     {
         $data = $request->all();
-        $recipy = $this->recipyRepositoy->findBy(['id' => $id]);
+        $recipy = $this->recipyRepositoy->findBy(['id' => $id])->first();
         return $this->recipyRepositoy->edit($data, $recipy);
     }
 

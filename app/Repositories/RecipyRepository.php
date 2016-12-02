@@ -50,10 +50,19 @@ class RecipyRepository implements RecipyRepositoryInterface {
 	 */
 	public function edit(array $values, Recipy $recipy)
 	{
-		foreach($values as $key => $value)
-		{
-			$recipy->$key = $value;
+		// prevent users from updating the id
+		// NOTE: we could use a method similar to the one used in RecipyController@store
+		// to restrict fields we allow to update
+		// we can also use mass-asignement by defining our properties in the model
+		if(isset($values['id'])) {
+			unset($values['id']);
 		}
+
+		// update timestamp, this should be done by Eloquent automatically but we
+		// have disabled it for now
+		$values['updated_at'] = Carbon::now();
+
+		$recipy->fill($values);
 
 		if($recipy->save()) {
 			return $recipy;

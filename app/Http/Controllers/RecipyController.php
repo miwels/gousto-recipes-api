@@ -83,6 +83,10 @@ class RecipyController extends Controller
     {
         $data = $request->all();
         $recipy = $this->recipyRepositoy->findBy(['id' => $id])->first();
+        if(!$recipy) {
+            return ['error' => 'Recipy not found!'];
+        }
+
         return $this->recipyRepositoy->edit($data, $recipy);
     }
 

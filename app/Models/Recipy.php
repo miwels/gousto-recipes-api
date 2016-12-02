@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Recipy extends Model
 {
-    protected $table = 'recipies';
+    protected $table = 'recipes';
     protected $dateFormat = 'd-m-Y H:i:s';
     protected $fillable = [
         'id',

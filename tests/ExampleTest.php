@@ -26,7 +26,7 @@ class ExampleTest extends TestCase
     }
 
     public function testApiHome() {
-        $content = $this->get('/api/recipies')
+        $content = $this->get('/api/recipes')
                         ->response
                         ->getContent();
 
@@ -40,7 +40,7 @@ class ExampleTest extends TestCase
     }
 
     public function testCategoryFilter() {
-        $content = $this->get('/api/recipies/category/recipe_cuisine/italian')
+        $content = $this->get('/api/recipes/category/recipe_cuisine/italian')
                         ->response
                         ->getContent();
 
@@ -52,7 +52,7 @@ class ExampleTest extends TestCase
     }
 
     public function testStoreMethod() {
-        $content = $this->post('/api/recipies/', $this->recipyProvider())
+        $content = $this->post('/api/recipes/', $this->recipyProvider())
                         ->response
                         ->getContent();
 
@@ -65,7 +65,7 @@ class ExampleTest extends TestCase
     }
 
     public function testUpdateMethod() {
-        $content = $this->put('/api/recipies/1', ['box_type' => 'gourmet'])
+        $content = $this->put('/api/recipes/1', ['box_type' => 'gourmet'])
                         ->response
                         ->getContent();
 

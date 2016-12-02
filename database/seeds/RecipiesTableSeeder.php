@@ -4,13 +4,13 @@ use Illuminate\Database\Seeder;
 use App\Factories\RecipyFactory;
 use App\Repositories\RecipyRepository;
 
-class RecipiesTableSeeder extends Seeder
+class RecipesTableSeeder extends Seeder
 {
     const CSV_PATH = "data/input.csv";
 
     /**
      * Run the database seeds.
-     * This method reads our input CSV file with the list of recipies and store
+     * This method reads our input CSV file with the list of recipes and store
      * them in our model.
      *
      * @return void
@@ -30,7 +30,7 @@ class RecipiesTableSeeder extends Seeder
         $data = Excel::load(self:: CSV_PATH)->get();
         $output = []; // for debugging purposes
         foreach($data as $element) {
-            DB::table('recipies')->insert([
+            DB::table('recipes')->insert([
                 'id'                    => $element->id,
                 'created_at'            => $element->created_at,
                 'updated_at'            => $element->updated_at,

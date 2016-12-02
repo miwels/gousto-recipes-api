@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecipiesTable extends Migration
+class CreateRecipesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRecipiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipies', function(Blueprint $table) {
+        Schema::create('recipes', function(Blueprint $table) {
             $table->integer('id');
             $table->timestamps();
             $table->text('box_type');
@@ -50,6 +50,6 @@ class CreateRecipiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('recipies');
+        Schema::drop('recipes');
     }
 }

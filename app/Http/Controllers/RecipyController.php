@@ -17,7 +17,7 @@ class RecipyController extends Controller
      * This method allows paginating the results, simply add an extra parameter
      * in your query string:
      *
-     * i.e /api/recipies?page=2
+     * i.e /api/recipes?page=2
      *
      * @return \Illuminate\Http\Response
      */
@@ -87,7 +87,7 @@ class RecipyController extends Controller
     }
 
     /**
-     * Filters recipies by a certain criteria.
+     * Filters recipes by a certain criteria.
      * We can restrict the categories we allow filtering
      *
      * @param string $nane  The category name
